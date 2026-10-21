@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Course List View -->
+
+
+    <record id="view_openacademy_course_tree" model="ir.ui.view">
+
+        <field name="name">openacademy.course.tree</field>
+        <field name="model">openacademy.course</field>
+
+        <field name="arch" type="xml">
+
+            <list>
+
+                <field name="name"/>
+                <field name="md_subject"/>
+                <field name="md_dob"/>
+                <field name="md_contact"/>
+                <field name="md_email"/>
+
+            </list>
+
+        </field>
+
+    </record>
+
+
+    <!-- Course Form View -->
+
+    <record id="view_openacademy_course_form" model="ir.ui.view">
+
+        <field name="name">openacademy.course.form</field>
+        <field name="model">openacademy.course</field>
+
+        <field name="arch" type="xml">
+
+            <form>
+
+                <sheet>
+
+                    <!-- Course Information -->
+
+                    <group>
+
+                        <field name="name"/>
+                        <field name="md_subject"/>
+                        <field name="md_dob"/>
+                        <field name="md_contact"/>
+                        <field name="md_email"/>
+                        <field name="md_address"/>
+
+                    </group>
+
+                    <!-- Notebook -->
+
+
+                    <notebook>
+
+                        <!-- One2many: Course → Sessions -->
+
+                        <page string="Sessions">
+
+                            <field name="session_ids">
+
+                                <list editable="bottom">
+
+                                    <field name="name"/>
+                                    <field name="md_start_date"/>
+                                    <field name="md_duration"/>
+                                    <field name="seats"/>
+                                    <field name="md_state"/>
+
+                                </list>
+
+                            </field>
+
+                        </page>
+
+
+                        <!-- Notes -->
+
+                        <page string="Notes">
+
+                            <field name="md_notes"/>
+
+                        </page>
+
+                    </notebook>
+
+                </sheet>
+
+            </form>
+
+        </field>
+
+    </record>
+
+
+
+
+    <!-- Course Kanban View -->
+
+<record id="view_openacademy_course_kanban" model="ir.ui.view">
+
+    <field name="name">openacademy.course.kanban</field>
+    <field name="model">openacademy.course</field>
+
+    <field name="arch" type="xml">
+
+        <kanban class="o_kanban_small_column">
+
+            <!-- Fields used by the Kanban -->
+
+            <field name="name"/>
+            <field name="md_subject"/>
+            <field name="md_email"/>
+            <field name="md_contact"/>
+
+            <templates>
+
+                <t t-name="card">
+
+                    <div class="oe_kanban_global_click">
+
+                        <!-- Course Title -->
+
+                        <div class="mb-2">
+
+                            <strong class="fs-5">
+                                <field name="name"/>
+                            </strong>
+
+                        </div>
+
+
+                        <!-- Subject -->
+
+                        <div class="mb-1">
+
+                            <strong>Subject: </strong>
+
+                            <field name="md_subject"/>
+
+                        </div>
+
+
+                        <!-- Email -->
+
+                        <div class="mb-1">
+
+                            <strong>Email: </strong>
+
+                            <field name="md_email"/>
+
+                        </div>
+
+
+                        <!-- Contact -->
+
+                        <div class="mb-1">
+
+                            <strong>Contact: </strong>
+
+                            <field name="md_contact"/>
+
+                        </div>
+
+                    </div>
+
+                </t>
+
+            </templates>
+
+        </kanban>
+
+    </field>
+
+</record>
+
+
+    <!-- Course Action -->
+    <record id="action_openacademy_course"
+            model="ir.actions.act_window">
+
+        <field name="name">Courses</field>
+        <field name="res_model">openacademy.course</field>
+        <field name="view_mode">list,form,kanban</field>
+
+    </record>
+
+</odoo>

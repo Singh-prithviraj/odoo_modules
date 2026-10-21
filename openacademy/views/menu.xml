@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Main Menu -->
+
+    <menuitem
+        id="menu_openacademy_root"
+        name="Open Academy"
+        sequence="1"
+    />
+
+
+    <!-- Courses -->
+
+    <menuitem
+        id="menu_openacademy_course"
+        name="Courses"
+        parent="menu_openacademy_root"
+        action="action_openacademy_course"
+        sequence="1"
+    />
+
+
+    <!-- Sessions -->
+    <!-- ================================= -->
+
+    <menuitem
+        id="menu_openacademy_session"
+        name="Sessions"
+        parent="menu_openacademy_root"
+        action="action_openacademy_session"
+        sequence="2"
+    />
+
+
+
+
+    
+    <!-- Instructor Action -->
+
+    <record id="action_instructors" model="ir.actions.act_window">
+        <field name="name">Instructors</field>
+        <field name="res_model">res.partner</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+
+    <!-- Instructor Menu -->
+
+    <menuitem
+        id="menu_openacademy_instructor"
+        name="Instructor"
+        parent="menu_openacademy_root"
+        action="action_instructors"
+        sequence="3"
+    />
+
+</odoo>

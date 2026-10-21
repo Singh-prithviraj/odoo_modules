@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<odoo>
+
+    <record id="view_partner_form_inherit" model="ir.ui.view">
+
+        <field name="name">view.partner.form.inherit</field>
+
+        <field name="model">res.partner</field>
+
+        <field name="inherit_id" ref="base.view_partner_form"/>
+
+        <field name="arch" type="xml">
+
+            <xpath expr="//field[@name='category_id']" position="after">
+
+                <field name="md_is_instructor"/>
+
+            </xpath>
+
+            <xpath expr="//page[@name='internal_notes']" position="after">
+
+                <page
+                    name="instructor_details"
+                    string="Instructor Details"
+                    invisible="md_is_instructor == False"
+                >
+
+                    <group>
+
+                        <group>
+
+                            <field name="md_qualification"/>
+                            <field name="md_experience"/>
+                            <field name="md_session_ids" widget="many2many_tags"/>
+
+                        </group>
+
+                    </group>
+
+                </page>
+
+            </xpath>
+
+        </field>
+
+    </record>
+    <record id="view_partner_search_inherit" model="ir.ui.view">
+    <field name="name">view.partner.search.inherit</field>
+    <field name="model">res.partner</field>
+    <field name="inherit_id" ref="base.view_res_partner_filter"/>
+
+    <field name="arch" type="xml">
+
+        <xpath expr="//filter[@name='type_company']" position="after">
+
+            <filter
+                string="Instructor"
+                name="instructor"
+                domain="[('md_is_instructor', '=', True)]"
+            />
+
+            <separator/>
+
+        </xpath>
+
+    </field>
+</record>
+
+</odoo>

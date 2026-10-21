@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<odoo>
+
+    <!-- Student List View -->
+    <record id="view_academy_student_list" model="ir.ui.view">
+        <field name="name">academy.student.list</field>
+        <field name="model">academy.student</field>
+        <field name="arch" type="xml">
+            <list string="Students">
+                <field name="student_code"/>
+                <field name="name"/>
+                <field name="email"/>
+                <field name="phone"/>
+                <field name="course_id"/>
+                <field name="batch_id"/>
+                <field name="fees"/>
+                <field name="paid"/>
+                <field name="remaining"/>
+                <field name="age"/>
+                <field name="active"/>
+            </list>
+        </field>
+    </record>
+
+
+    <!-- Student Form View -->
+    <record id="view_academy_student_form" model="ir.ui.view">
+        <field name="name">academy.student.form</field>
+        <field name="model">academy.student</field>
+        <field name="arch" type="xml">
+
+            <form string="Student">
+
+                <sheet>
+
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="student_code"/>
+                            <field name="email"/>
+                            <field name="phone"/>
+                            <field name="dob"/>
+                            <field name="age" readonly="1"/>
+                        </group>
+
+                        <group>
+                            <field name="gender"/>
+                            <field name="admission_date"/>
+                            <field name="course_id"/>
+                            <!-- <field name="course_name" readonly="1"/> -->
+                            <field name="batch_id"/>
+                            <!-- <field name="batch_name" readonly="1"/> -->
+                            <field name="active"/>
+                        </group>
+                    </group>
+
+                    <group string="Fees">
+                        <field name="fees"/>
+                        <field name="paid"/>
+                        <field name="remaining"/>
+                    </group>
+
+                </sheet>
+
+            </form>
+
+        </field>
+    </record>
+
+
+    <!-- Student Kanban View -->
+<record id="view_academy_student_kanban" model="ir.ui.view">
+    <field name="name">academy.student.kanban</field>
+    <field name="model">academy.student</field>
+    <field name="arch" type="xml">
+
+        <kanban>
+
+            <field name="name"/>
+            <field name="student_code"/>
+            <field name="course_id"/>
+            <field name="batch_id"/>
+            <field name="fees"/>
+            <field name="paid"/>
+            <field name="remaining"/>
+            <field name="active"/>
+
+            <templates>
+                <t t-name="card">
+
+                    <div class="oe_kanban_global_click">
+
+                        <strong>
+                            <field name="name"/>
+                        </strong>
+
+                        <div>
+                            Code:
+                            <field name="student_code"/>
+                        </div>
+
+                        <div>
+                            Course:
+                            <field name="course_id"/>
+                        </div>
+
+                        <div>
+                            Batch:
+                            <field name="batch_id"/>
+                        </div>
+
+                        <div>
+                            Fees:
+                            <field name="fees"/>
+                        </div>
+
+                        <div>
+                            Paid:
+                            <field name="paid"/>
+                        </div>
+
+                        <div>
+                            Remaining:
+                            <field name="remaining"/>
+                        </div>
+
+                        <div>
+                            Active:
+                            <field name="active"/>
+                        </div>
+
+                    </div>
+
+                </t>
+            </templates>
+
+        </kanban>
+
+    </field>
+</record>
+
+
+    <!-- Student Action -->
+    <record id="action_academy_student" model="ir.actions.act_window">
+        <field name="name">Students</field>
+        <field name="res_model">academy.student</field>
+        <field name="view_mode">list,kanban,form</field>
+    </record>
+
+
+    <!-- Student Menu -->
+    <menuitem
+        id="menu_academy_student"
+        name="Students"
+        parent="menu_academy_management_root"
+        action="action_academy_student"
+        sequence="20"
+    />
+
+</odoo>

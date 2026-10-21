@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_partner_form_academy_trainer" model="ir.ui.view">
+        <field name="name">res.partner.form.academy.trainer</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+
+        <field name="arch" type="xml">
+
+            
+            <xpath expr="//field[@name='function']" position="after">
+               <field name="trainer_specialization"/>
+            </xpath>
+
+           <xpath expr="//field[@name='phone']" position="before">
+               <div class="o_form_label">
+                    Trainer Joining Date
+               </div>
+               <field name="trainer_joining_date"/>
+           </xpath>
+
+
+            <!-- Add Is Trainer and Trainer Experience -->
+            <xpath expr="//field[@name='function']/.." position="inside">
+                <field name="is_trainer"/>
+                <field name="trainer_experience"/>
+            </xpath>
+
+            <!-- Replace Function while preserving its original behavior -->
+            <xpath expr="//field[@name='function']" position="replace">
+                <field name="function"
+                       placeholder="e.g. Sales Director"
+                       invisible="is_company"/>
+            </xpath>
+
+        </field>
+    </record>
+
+</odoo>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<odoo>
+
+    <!-- Main Menu -->
+    <menuitem
+        id="student_management_menu"
+        name="Student Management"
+        sequence="10"
+    />
+
+
+    <!-- Courses Menu -->
+    <menuitem
+        id="student_course_menu"
+        name="Courses"
+        parent="student_management_menu"
+        action="student_course_action"
+        sequence="10"
+    />
+
+
+    <!-- Students Menu -->
+    <menuitem
+        id="student_student_menu"
+        name="Students"
+        parent="student_management_menu"
+        action="student_student_action"
+        sequence="20"
+    />
+
+      <!-- Subjects Menu -->
+    <menuitem
+        id="student_subject_menu"
+        name="Subjects"
+        parent="student_management_menu"
+        action="action_student_subject"
+        sequence="30"
+    />
+
+</odoo>

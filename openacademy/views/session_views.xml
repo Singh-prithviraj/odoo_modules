@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Session List View -->
+
+
+    <record id="view_session_tree" model="ir.ui.view">
+
+        <field name="name">openacademy.session.tree</field>
+        <field name="model">openacademy.session</field>
+
+        <field name="arch" type="xml">
+
+            <list>
+
+                <field name="name"/>
+                <field name="course_id"/>
+                <field name="course_subject"/>
+                <field name="md_start_date"/>
+                <field name="md_end_date"/>
+
+                <field name="md_duration"/>
+                <field name="seats"/>
+                <field name="md_taken_seats" widget="progressbar"/>
+                <field name="active"/>
+                <field name="md_state"/>
+                <field name="md_instructor_id"/>
+
+
+            </list>
+
+        </field>
+
+    </record>
+
+
+    <!-- Session Form View -->
+
+
+    <record id="view_session_form" model="ir.ui.view">
+
+        <field name="name">openacademy.session.form</field>
+        <field name="model">openacademy.session</field>
+
+        <field name="arch" type="xml">
+
+            <form>
+
+                <sheet>
+
+                    <!-- Session Information -->
+
+                    <group>
+
+                        <field name="name"/>
+
+                        <!-- Many2one:
+                             Session → Course -->
+
+                        <field name="course_id"/>
+                        <field name="course_subject"/>
+                        <field name="md_instructor_id"/>
+
+                        <field name="md_start_date"/>
+                        <field name="md_end_date"/>
+
+                        <field name="md_duration"/>
+                        <field name="seats"/>
+                        <field name="md_taken_seats" widget="progressbar"/>
+                        <field name="active"/>
+                        <field name="md_state"/>
+
+
+                    </group>
+
+                    <!-- Attendees -->
+
+                    <notebook>
+
+                        <page string="Attendees">
+
+                            <!-- Many2many:
+                                 Session ↔ Partners -->
+
+                            <field name="md_attendee_id"
+                                   widget="many2many_tags"/>
+
+                        </page>
+
+                    </notebook>
+
+                </sheet>
+
+            </form>
+
+        </field>
+
+    </record>
+
+
+    <!-- Session Calendar View -->
+
+<record id="view_openacademy_session_calendar" model="ir.ui.view">
+
+    <field name="name">openacademy.session.calendar</field>
+
+    <field name="model">openacademy.session</field>
+
+    <field name="arch" type="xml">
+
+        <calendar
+            string="Sessions"
+            date_start="md_start_date"
+            date_stop="md_end_date"
+            mode="month"
+            color="course_id"
+            event_open_popup="True">
+
+            <field name="name"/>
+
+            <field name="course_id"/>
+
+            <field name="md_duration"/>
+
+            <field name="md_state"/>
+
+        </calendar>
+
+    </field>
+
+</record>
+
+
+
+
+<!-- Session Graph View -->
+
+<record id="view_openacademy_session_graph" model="ir.ui.view">
+
+    <field name="name">openacademy.session.graph</field>
+
+    <field name="model">openacademy.session</field>
+
+    <field name="arch" type="xml">
+
+        <graph string="Session Analysis">
+
+            <field name="course_id"/>
+
+            <field name="seats" type="measure"/>
+
+            <field name="md_taken_seats" type="measure"/>
+
+        </graph>
+
+    </field>
+
+</record>
+
+
+
+
+
+
+
+    <!-- Session Action -->
+
+
+    <record id="action_openacademy_session"
+            model="ir.actions.act_window">
+
+        <field name="name">Sessions</field>
+        <field name="res_model">openacademy.session</field>
+        <field name="view_mode">list,form,calendar,graph</field>
+
+    </record>
+
+</odoo>
